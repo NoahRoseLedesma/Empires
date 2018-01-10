@@ -1,4 +1,5 @@
 #include "map.h"
+#include <iostream>
 
 void UTIL_MakeEmptyMap( Map *pMap, int iWidth, int iHeight )
 {
@@ -59,12 +60,12 @@ void UTIL_RenderMap( Map *pMap, sf::Image *pImage, DeltaMap *pDeltaMap /*= nullp
 		{
 			int iXPosition = itDeltaMap->second;
 			int iYPosition = itDeltaMap->first;
-			iYPosition = -iYPosition + MapHeight; // Flip Y values across the middle of the map
+            iYPosition = -iYPosition + ( int )MapHeight; // Flip Y values across the middle of the map
 
-			if ( iYPosition==MapHeight )
-			{
-				iYPosition--; // 0 is a valid index but MapHeight isnt. 
-			}
+            if ( iYPosition==MapHeight )
+            {
+                iYPosition--; // 0 is a valid index but MapHeight isnt.
+            }
 
 			pImage->setPixel( iXPosition, iYPosition, UTIL_At2D( &pAllignedMap, iXPosition, iYPosition )->GetCellColor() );
 		}
